@@ -1,0 +1,5 @@
+.pio/
+*.log
+include/secrets.h
+include/location.h
+/*.png
