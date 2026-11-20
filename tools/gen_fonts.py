@@ -1,8 +1,9 @@
 """
 Генератор 1-битных шрифтов для ST7305 (400x300, монохром).
 
-Берёт TTF из C:\\Windows\\Fonts, растеризует нужный набор символов
-и складывает в include/fonts.h: glyph-таблица + общий blob с битмапами.
+Берёт TTF из assets/fonts (PT Sans, лицензия OFL — см. assets/fonts/OFL.txt),
+растеризует нужный набор символов и складывает в include/fonts.h:
+glyph-таблица + общий blob с битмапами.
 
 Запуск:  python tools/gen_fonts.py
 """
@@ -23,14 +24,14 @@ TEXT_CHARS = BASE + CYR + EXTRA
 
 FONTS = [
     # (имя в C, файл, размер px, набор символов, track)
-    ("font_time", "segoeuib.ttf", 96, DIGITS, 0),
-    ("font_temp", "segoeuib.ttf", 120, TEMP, 0),
-    ("font_text", "segoeui.ttf", 21, TEXT_CHARS, 0),
-    ("font_small", "segoeui.ttf", 16, TEXT_CHARS, 0),
-    ("font_smallb", "segoeuib.ttf", 16, TEXT_CHARS, 0),
+    ("font_time", "PT_Sans-Web-Bold.ttf", 96, DIGITS, 0),
+    ("font_temp", "PT_Sans-Web-Bold.ttf", 120, TEMP, 0),
+    ("font_text", "PT_Sans-Web-Regular.ttf", 21, TEXT_CHARS, 0),
+    ("font_small", "PT_Sans-Web-Regular.ttf", 16, TEXT_CHARS, 0),
+    ("font_smallb", "PT_Sans-Web-Bold.ttf", 16, TEXT_CHARS, 0),
 ]
 
-FONT_DIR = os.path.join(os.environ.get("WINDIR", r"C:\Windows"), "Fonts")
+FONT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets", "fonts")
 
 
 def pack_glyph(img):
